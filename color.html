@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>CSS Generator</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link href="img/favicon.png" rel="shortcut icon" type="image/png">
+
+  <!-- WEB APP -->
+  <link href="img/apple-touch-icon.png" rel="apple-touch-icon-precomposed">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/style.css" type="text/css" />
+
+  <!-- JS -->
+  <script defer src="https://code.iconify.design/iconify-icon/1.0.0-beta.3/iconify-icon.min.js"></script>
+  <script defer src="js/functions.js"></script>
+</head>
+
+<body>
+
+  <header>
+    <a href="#" id="menu" onclick="add()">&#9776;</a>
+    <div id="top">
+      <a href="./">Border Radius</a>
+      <a class="active" href="color.html">Color</a>
+      <a href="box-shadow.html">Box Shadow</a>
+      <a href="text-shadow.html">Text Shadow</a>
+      <a href="gradient.html">Gradient</a>
+      <a href="transform.html">Transform</a>
+      <a href="flexbox.html">Flexbox</a>
+      <a href="grid.html">Grid</a>
+      <a href="background.html">Background</a>
+      <a href="button.html">Button</a>
+    </div>
+  </header>
+
+  <main data-animation>
+
+    <div id="controls" data-colors-generator>
+
+      <span>Hue</span>
+      <input type="range" min="0" max="360" id="hue">
+      <span>Saturation</span>
+      <input type="range" min="0" max="100" id="sat">
+      <span>Lightness</span>
+      <input type="range" min="0" max="100" id="lig">
+
+      <p id="code">...</p>
+
+      <div class="buttons">
+        <button onclick="copy()">Copy CSS</button>
+        <button onclick="generateRandomColor()">Generate!</button>
+      </div>
+
+    </div>
+
+  </main>
+
+  <footer></footer>
+
+</body>
+
+</html>

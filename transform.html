@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>CSS Generator</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link href="img/favicon.png" rel="shortcut icon" type="image/png">
+
+  <!-- WEB APP -->
+  <link href="img/apple-touch-icon.png" rel="apple-touch-icon-precomposed">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/style.css" type="text/css" />
+
+  <!-- JS -->
+  <script defer src="https://code.iconify.design/iconify-icon/1.0.0-beta.3/iconify-icon.min.js"></script>
+  <script defer src="js/functions.js"></script>
+</head>
+
+<body>
+
+  <header>
+    <a href="#" id="menu" onclick="add()">&#9776;</a>
+    <div id="top">
+      <a href="./">Border Radius</a>
+      <a href="color.html">Color</a>
+      <a href="box-shadow.html">Box Shadow</a>
+      <a href="text-shadow.html">Text Shadow</a>
+      <a href="gradient.html">Gradient</a>
+      <a class="active" href="transform.html">Transform</a>
+      <a href="flexbox.html">Flexbox</a>
+      <a href="grid.html">Grid</a>
+      <a href="background.html">Background</a>
+      <a href="button.html">Button</a>
+    </div>
+  </header>
+
+  <main data-animation>
+
+    <div id="controls" data-transform>
+
+      <span>Translate X</span>
+      <input type="range" min="-100" max="100" value="0" id="translateX" data-unit="px">
+      <span>Translate Y</span>
+      <input type="range" min="-100" max="100" value="0" id="translateY" data-unit="px">
+      <!-- <span>Translate Z</span>
+    <input type="range" min="-100" max="100" value="0" id="translateZ" data-unit="px"> -->
+
+      <span>Rotate X</span>
+      <input type="range" min="-100" max="100" value="0" id="rotateX" data-unit="deg">
+      <span>Rotate Y</span>
+      <input type="range" min="-100" max="100" value="0" id="rotateY" data-unit="deg">
+      <span>Rotate Z</span>
+      <input type="range" min="-100" max="100" value="0" id="rotateZ" data-unit="deg">
+
+      <span>Skew X</span>
+      <input type="range" min="-5" max="5" value="0" id="skewX" data-unit="deg">
+      <span>Skew Y</span>
+      <input type="range" min="-5" max="5" value="0" id="skewY" data-unit="deg">
+
+      <!-- <span>Scale</span>
+    <input type="range" min=".5" max="1.5" value="1" step="0.01" id="scale" data-unit=""> -->
+      <span>Scale X</span>
+      <input type="range" min=".5" max="1.5" value="1" step="0.01" id="scaleX" data-unit="">
+      <span>Scale Y</span>
+      <input type="range" min=".5" max="1.5" value="1" step="0.01" id="scaleY" data-unit="">
+      <!-- <span>Scale Z</span>
+    <input type="range" min=".1" max="2" value="1" data-unit=""> -->
+
+      <p id="code">...</p>
+
+      <div class="buttons">
+        <button onclick="copy()">Copy CSS</button>
+        <button onclick="generateRandomTransform()">Generate!</button>
+      </div>
+
+    </div>
+
+    <div id="square"></div>
+
+  </main>
+
+  <footer></footer>
+
+</body>
+
+</html>

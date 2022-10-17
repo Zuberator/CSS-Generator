@@ -1,0 +1,145 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>CSS Generator</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link href="img/favicon.png" rel="shortcut icon" type="image/png">
+
+  <!-- WEB APP -->
+  <link href="img/apple-touch-icon.png" rel="apple-touch-icon-precomposed">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/style.css" type="text/css" />
+
+  <!-- JS -->
+  <script defer src="https://code.iconify.design/iconify-icon/1.0.0-beta.3/iconify-icon.min.js"></script>
+  <script defer src="js/functions.js"></script>
+</head>
+
+<body>
+
+  <header>
+    <a href="#" id="menu" onclick="add()">&#9776;</a>
+    <div id="top">
+      <a href="./">Border Radius</a>
+      <a href="color.html">Color</a>
+      <a href="box-shadow.html">Box Shadow</a>
+      <a href="text-shadow.html">Text Shadow</a>
+      <a href="gradient.html">Gradient</a>
+      <a href="transform.html">Transform</a>
+      <a class="active" href="flexbox.html">Flexbox</a>
+      <a href="grid.html">Grid</a>
+      <a href="background.html">Background</a>
+      <a href="button.html">Button</a>
+    </div>
+  </header>
+
+  <main data-animation>
+
+    <div id="controls" data-flexbox>
+
+      <span>Display</span>
+      <select data-square>
+        <option value="display: flex">flex</option>
+        <option value="display: inline-Flex">inline-Flex</option>
+      </select>
+      <span>Flex Direction</span>
+      <select data-square>
+        <option value="flex-direction: row">row</option>
+        <option value="flex-direction: column">column</option>
+      </select>
+      <span>Flex Wrap</span>
+      <select data-square>
+        <option value="">none</option>
+        <option value="flex-wrap: wrap">wrap</option>
+        <option value="flex-wrap: nowrap">nowrap</option>
+        <option value="flex-wrap: wrap-reverse">wrap-reverse</option>
+      </select>
+      <span>Justify Content</span>
+      <select data-square>
+        <option value="">none</option>
+        <option value="justify-content: baseline">baseline</option>
+        <option value="justify-content: center">center</option>
+        <option value="justify-content: end">end</option>
+        <option value="justify-content: flex-end">flex-end</option>
+        <option value="justify-content: flex-start">flex-start</option>
+        <option value="justify-content: left">left</option>
+        <option value="justify-content: right">right</option>
+        <option value="justify-content: safe">safe</option>
+        <option value="justify-content: space-around">space-around</option>
+        <option value="justify-content: space-between">space-between</option>
+        <option value="justify-content: space-evenly">space-evenly</option>
+        <option value="justify-content: start">start</option>
+        <option value="justify-content: stretch">stretch</option>
+        <option value="justify-content: unsafe">unsafe</option>
+      </select>
+      <span>Align Items</span>
+      <select data-square>
+        <option value="">none</option>
+        <option value="align-items: baseline">baseline</option>
+        <option value="align-items: center">center</option>
+        <option value="align-items: flex-end">flex-end</option>
+        <option value="align-items: flex-start">flex-start</option>
+        <option value="align-items: left">left</option>
+        <option value="align-items: right">right</option>
+        <option value="align-items: safe">safe</option>
+        <option value="align-items: space-around">space-around</option>
+        <option value="align-items: space-between">space-between</option>
+        <option value="align-items: space-evenly">space-evenly</option>
+        <option value="align-items: start">start</option>
+        <option value="align-items: stretch">stretch</option>
+        <option value="align-items: unsafe">unsafe</option>
+      </select>
+      <span>Align Content</span>
+      <select data-square>
+        <option value="">none</option>
+        <option value="align-content: baseline">baseline</option>
+        <option value="align-content: center">center</option>
+        <option value="align-content: flex-end">flex-end</option>
+        <option value="align-content: flex-start">flex-start</option>
+        <option value="align-content: left">left</option>
+        <option value="align-content: right">right</option>
+        <option value="align-content: safe">safe</option>
+        <option value="align-content: space-around">space-around</option>
+        <option value="align-content: space-between">space-between</option>
+        <option value="align-content: space-evenly">space-evenly</option>
+        <option value="align-content: start">start</option>
+        <option value="align-content: stretch">stretch</option>
+        <option value="align-content: unsafe">unsafe</option>
+      </select>
+      <span>Margin</span>
+      <select data-small-square>
+        <option value="">none</option>
+        <option value="margin-top: auto">margin-top: auto</option>
+        <option value="margin-right: auto">margin-right: auto</option>
+        <option value="margin-bottom: auto">margin-bottom: auto</option>
+        <option value="margin-left: auto">margin-left: auto</option>
+      </select>
+
+      <input type="button" value="+" onclick="addSquare()">
+
+      <p id="code">...</p>
+
+      <div class="buttons">
+        <button onclick="copy()">Copy CSS</button>
+        <button onclick="generateRandomFlexbox()">Generate!</button>
+      </div>
+
+    </div>
+
+    <div id="square">
+      <div id="small-square"></div>
+      <div id="small-square"></div>
+      <div id="small-square"></div>
+    </div>
+
+  </main>
+
+  <footer></footer>
+
+</body>
+
+</html>

@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>CSS Generator</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link href="img/favicon.png" rel="shortcut icon" type="image/png">
+
+  <!-- WEB APP -->
+  <link href="img/apple-touch-icon.png" rel="apple-touch-icon-precomposed">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/style.css" type="text/css" />
+
+  <!-- JS -->
+  <script defer src="https://code.iconify.design/iconify-icon/1.0.0-beta.3/iconify-icon.min.js"></script>
+  <script defer src="js/functions.js"></script>
+</head>
+
+<body>
+
+  <header>
+    <a href="#" id="menu" onclick="add()">&#9776;</a>
+    <div id="top">
+      <a class="active" href="./">Border Radius</a>
+      <a href="color.html">Color</a>
+      <a href="box-shadow.html">Box Shadow</a>
+      <a href="text-shadow.html">Text Shadow</a>
+      <a href="gradient.html">Gradient</a>
+      <a href="transform.html">Transform</a>
+      <a href="flexbox.html">Flexbox</a>
+      <a href="grid.html">Grid</a>
+      <a href="background.html">Background</a>
+      <a href="button.html">Button</a>
+    </div>
+  </header>
+
+  <main data-animation>
+
+    <div id="controls" data-radius>
+
+      <span>Top Left</span>
+      <input type="range" min="0" max="100" value="0" id="top-left">
+      <span>Top Right</span>
+      <input type="range" min="0" max="100" value="0" id="top-right">
+      <span>Bottom Left</span>
+      <input type="range" min="0" max="100" value="0" id="bottom-left">
+      <span>Bottom Right</span>
+      <input type="range" min="0" max="100" value="0" id="bottom-right">
+
+      <p id="code">...</p>
+
+      <div class="buttons">
+        <button onclick="copy()">Copy CSS</button>
+        <button onclick="generateRandomBorderRadius()">Generate!</button>
+      </div>
+
+    </div>
+
+    <div id="square"></div>
+
+  </main>
+
+  <footer></footer>
+
+</body>
+
+</html>
