@@ -1,3 +1,5 @@
+// if (window.location.pathname=='/account') {}
+
 //===MENU===//
 
 let headHeader = document.querySelector("header");
@@ -35,7 +37,6 @@ function copy() {
 // RANDOM NUMBER
 
 function random(min, max) {
-  // const number = Math.floor(Math.random() * (max - min)) + min;
   const number = Math.random() * (max - min) + min;
   return number;
 }
@@ -309,36 +310,49 @@ function setTransform() {
 // FLEXBOX
 
 let selectFlexbox = document.querySelectorAll("select");
-let selectFlexboxBig = document.querySelectorAll("[data-square]");
-let selectFlexboxSmall = document.querySelectorAll("[data-small-square]");
-let smallSquares = document.querySelectorAll("#small-square");
+let selectFlexboxParent = document.querySelectorAll("[data-square]");
+let selectFlexboxChildren = document.querySelectorAll("[data-small-square]");
+let smallSquaresBox = document.querySelector("#square");
 
 selectFlexbox.forEach((select) => {
-  select.addEventListener("input", (e) => {
+  select.addEventListener("input", () => {
     setFlexbox();
   });
 });
 
+function addSquare() {
+  let smallSquare = document.createElement("div");
+  smallSquare.id = "small-square";
+  smallSquaresBox.appendChild(smallSquare);
+}
+
 function generateRandomFlexbox() {
+  selectFlexbox.forEach((select) => {
+    select.value =
+      select.options[Math.floor(random(0, select.options.length))].value;
+  });
   setFlexbox();
 }
 
 setFlexbox();
 
 function setFlexbox() {
-  let valuesFlexboxBig = [];
-  let valuesFlexboxSmall = [];
+  let valuesFlexboxParent = [];
+  let valuesFlexboxChildren = [];
 
-  selectFlexboxBig.forEach((select) => {
-    if (select.value != "") valuesFlexboxBig.push(select.value);
+  selectFlexboxParent.forEach((select) => {
+    if (select.value != "") valuesFlexboxParent.push(select.value);
   });
 
-  selectFlexboxSmall.forEach((select) => {
-    if (select.value != "") valuesFlexboxSmall.push(select.value);
+  selectFlexboxChildren.forEach((select) => {
+    if (select.value != "") valuesFlexboxChildren.push(select.value);
   });
 
-  square.setAttribute("style", valuesFlexboxBig.join("; "));
-  smallSquares[0].setAttribute("style", valuesFlexboxSmall.join("; "));
+  square.setAttribute("style", valuesFlexboxParent.join("; "));
+  smallSquaresBox.children[0].setAttribute(
+    "style",
+    valuesFlexboxChildren.join("; ")
+  );
   cssCode.textContent = square.getAttribute("style");
 }
 
@@ -346,20 +360,43 @@ function setFlexbox() {
 
 // GRID
 
-// let selectGrid = document.querySelectorAll("select");
+let selectGrid = document.querySelectorAll("select");
+let selectGridParent = document.querySelectorAll("[data-square]");
+let selectGridChildren = document.querySelectorAll("[data-small-square]");
+// let smallSquaresBox = document.querySelector("#square");
 
-// console.log(selectGrid)
+selectGrid.forEach((select) => {
+  select.addEventListener("input", () => {
+    setGrid();
+  });
+});
 
-// inputsGrid.forEach((input) => {
-//   input.addEventListener("input", (e) => {});
-// });
+function generateRandomGrid() {
+  selectGrid.forEach((select) => {
+    select.value =
+      select.options[Math.floor(random(0, select.options.length))].value;
+  });
+  setGrid();
+}
 
-// function generateRandomGrid() {
-//   setGrid();
-// }
+setGrid();
 
-// function setGrid() {
-//   square.style.setProperty("transform", values.join(" "));
-//   cssCode.textContent = "transform: " + square.style.transform;
-//   values = [];
-// }
+function setGrid() {
+  let valuesGridBig = [];
+  let valuesGridSmall = [];
+
+  selectGridParent.forEach((select) => {
+    if (select.value != "") valuesGridBig.push(select.value);
+  });
+
+  selectGridChildren.forEach((select) => {
+    if (select.value != "") valuesGridSmall.push(select.value);
+  });
+
+  square.setAttribute("style", valuesGridBig.join("; "));
+  smallSquaresBox.children[0].setAttribute(
+    "style",
+    valuesGridSmall.join("; ")
+  );
+  cssCode.textContent = square.getAttribute("style");
+}

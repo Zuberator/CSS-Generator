@@ -212,6 +212,10 @@ p {
 
 /* FLEXBOX */
 
+[data-flexbox] + #square {
+  gap: 0;
+}
+
 #small-square {
   width: 100px;
   height: 100px;
@@ -219,6 +223,10 @@ p {
 }
 
 /* GRID */
+
+[data-grid] + #square {
+  gap: 0;
+}
 
 /* BACKGROUND */
 

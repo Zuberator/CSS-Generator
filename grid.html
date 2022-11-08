@@ -41,14 +41,141 @@
 
     <div id="controls" data-grid>
 
-      <span>Horizontal</span>
-      <input type="range" min="-100" max="100" id="horizontal">
-      <span>Vertical</span>
-      <input type="range" min="-100" max="100" id="vertical">
-      <span>Blur</span>
-      <input type="range" min="0" max="20" value="0" id="blur">
-      <span>Color</span>
-      <input type="color" id="color">
+      <span>Display</span>
+      <select data-square>
+        <option value="display: grid">grid</option>
+        <option value="display: inline-grid">inline-grid</option>
+      </select>
+
+      <span>Grid Template Columns</span>
+      <select data-square>
+        <option value="">none</option>
+        <option value="grid-template-columns: 1fr">1fr</option>
+        <option value="grid-template-columns: minmax(10px, 1fr) 3fr">minmax(10px, 1fr) 3fr</option>
+        <option value="grid-template-columns: repeat(5, 1fr)">repeat(5, 1fr)</option>
+        <option value="grid-template-columns: 100px">100px</option>
+        <option value="grid-template-columns: auto">auto</option>
+      </select>
+
+      <span>Grid Template Rows</span>
+      <select data-square>
+        <option value="">none</option>
+        <option value="grid-template-rows: 1fr">1fr</option>
+        <option value="grid-template-rows: minmax(10px, 1fr) 3fr">minmax(10px, 1fr) 3fr</option>
+        <option value="grid-template-rows: repeat(5, 1fr)">repeat(5, 1fr)</option>
+        <option value="grid-template-rows: 100px">100px</option>
+        <option value="grid-template-rows: auto">auto</option>
+        <option value="grid-template-rows: min-content 1fr min-content">min-content 1fr min-content</option>
+        <option value="grid-template-rows: 100px 1fr max-content">100px 1fr max-content</option>
+      </select>
+
+      <span>Grid Template Areas</span>
+      <select data-square>
+        <option value="">none</option>
+        <option value='grid-template-areas: "header header header header"
+        "main main . sidebar"
+        "footer footer footer footer"'>"header header header header"
+          "main main . sidebar"
+          "footer footer footer footer"</option>
+      </select>
+
+      <span>Gap</span>
+      <select data-square>
+        <option value="">none</option>
+        <option value="gap: 10px">10px</option>
+        <option value="gap: 10%">10%</option>
+        <option value="gap: 20px 0">20px 0</option>
+        <option value="gap: 20% 0">20% 0</option>
+        <option value="gap: 0 20px">0 20px</option>
+        <option value="gap: 0 20%">0 20%</option>
+      </select>
+
+      <span>Justify Items</span>
+      <select data-square>
+        <option value="">none</option>
+        <option value="justify-items: start">start</option>
+        <option value="justify-items: end">end</option>
+        <option value="justify-items: center">center</option>
+        <option value="justify-items: stretch">stretch</option>
+      </select>
+
+      <span>Align Items</span>
+      <select data-square>
+        <option value="">none</option>
+        <option value="align-items: start">start</option>
+        <option value="align-items: end">end</option>
+        <option value="align-items: center">center</option>
+        <option value="align-items: stretch">stretch</option>
+        <option value="align-items: baseline">baseline</option>
+      </select>
+
+      <span>Justify Content</span>
+      <select data-square>
+        <option value="">none</option>
+        <option value="justify-content: start">start</option>
+        <option value="justify-content: end">end</option>
+        <option value="justify-content: center">center</option>
+        <option value="justify-content: stretch">stretch</option>
+        <option value="justify-content: space-around">space-around</option>
+        <option value="justify-content: space-between">space-between</option>
+        <option value="justify-content: space-evenly">space-evenly</option>
+      </select>
+
+      <span>Align Content</span>
+      <select data-square>
+        <option value="">none</option>
+        <option value="align-content: start">start</option>
+        <option value="align-content: end">end</option>
+        <option value="align-content: center">center</option>
+        <option value="align-content: stretch">stretch</option>
+        <option value="align-content: space-around">space-around</option>
+        <option value="align-content: space-between">space-between</option>
+        <option value="align-content: space-evenly">space-evenly</option>
+      </select>
+
+      <span>Grid Auto Columns</span>
+      <select data-square>
+        <option value="">none</option>
+        <option value="grid-auto-columns: 1fr">1fr</option>
+        <option value="grid-auto-columns: 50px">50px</option>
+        <option value="grid-auto-columns: 100px">100px</option>
+      </select>
+
+      <span>Grid Auto Rows</span>
+      <select data-square>
+        <option value="">none</option>
+        <option value="grid-auto-rows: 1fr">1fr</option>
+        <option value="grid-auto-rows: 50px">50px</option>
+        <option value="grid-auto-rows: 100px">100px</option>
+      </select>
+
+      <span>Grid Auto Flow</span>
+      <select data-square>
+        <option value="">none</option>
+        <option value="grid-auto-flow: row">row</option>
+        <option value="grid-auto-flow: column">column</option>
+        <option value="grid-auto-flow: dense">dense</option>
+      </select>
+
+      <!-- .item-a {
+        grid-column: 1 / 2;
+        grid-row: 2 / 3;
+      }
+      .item-b {
+        grid-column: 5 / 6;
+        grid-row: 2 / 3;
+      } -->
+
+      <span>Margin (First Square)</span>
+      <select data-small-square>
+        <option value="">none</option>
+        <option value="margin-top: auto">margin-top: auto</option>
+        <option value="margin-right: auto">margin-right: auto</option>
+        <option value="margin-bottom: auto">margin-bottom: auto</option>
+        <option value="margin-left: auto">margin-left: auto</option>
+      </select>
+
+      <input type="button" value="+" onclick="addSquare()">
 
       <p id="code">...</p>
 
