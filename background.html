@@ -16,7 +16,6 @@
 
   <!-- JS -->
   <script defer src="https://code.iconify.design/iconify-icon/1.0.0-beta.3/iconify-icon.min.js"></script>
-  <script defer src="js/functions.js"></script>
 </head>
 
 <body>
@@ -39,31 +38,127 @@
 
   <main data-animation>
 
-  <div id="controls" data-background-generator>
+    <div id="controls" data-background-generator>
 
-    <span>Horizontal</span>
-    <input type="range" min="-100" max="100" id="horizontal">
-    <span>Vertical</span>
-    <input type="range" min="-100" max="100" id="vertical">
-    <span>Blur</span>
-    <input type="range" min="0" max="20" value="0" id="blur">
-    <span>Color</span>
-    <input type="color" id="color">
+      <span>Color</span>
+      <input type="color" id="color">
 
-    <p id="code">...</p>
+      <span>Image</span>
+      <input type="file" id="file">
 
-    <div class="buttons">
-      <button onclick="copy()">Copy CSS</button>
-      <button onclick="generateRandomBackground()">Generate!</button>
+      <span>Size</span>
+      <select data-square>
+        <option value="background-size: auto">auto</option>
+        <option value="background-size: cover">cover</option>
+        <option value="background-size: contain">contain</option>
+        <option value="background-size: 50px">50px</option>
+        <option value="background-size: 100px">100px</option>
+        <option value="background-size: 10%">10%</option>
+        <option value="background-size: 50%">50%</option>
+      </select>
+
+      <span>Attachment</span>
+      <select data-square>
+        <option value="background-attachment: scroll">scroll</option>
+        <option value="background-attachment: fixed">fixed</option>
+        <option value="background-attachment: local">local</option>
+      </select>
+
+      <span>Blend Mode</span>
+      <select data-square>
+        <option value="background-blend-mode: multiply">multiply</option>
+        <option value="background-blend-mode: screen">screen</option>
+        <option value="background-blend-mode: overlay">overlay</option>
+        <option value="background-blend-mode: darken">darken</option>
+        <option value="background-blend-mode: lighten">lighten</option>
+        <option value="background-blend-mode: color-dodge">color-dodge</option>
+        <option value="background-blend-mode: saturation">saturation</option>
+        <option value="background-blend-mode: color">color</option>
+        <option value="background-blend-mode: luminosity">luminosity</option>
+      </select>
+
+      <span>Position X</span>
+      <select data-square>
+        <option value="background-position-x: top">top</option>
+        <option value="background-position-x: bottom">bottom</option>
+        <option value="background-position-x: center">center</option>
+        <option value="background-position-x: 10%">10%</option>
+        <option value="background-position-x: 50%">50%</option>
+      </select>
+
+      <span>Position Y</span>
+      <select data-square>
+        <option value="background-position-y: top">top</option>
+        <option value="background-position-y: bottom">bottom</option>
+        <option value="background-position-y: center">center</option>
+        <option value="background-position-y: 10%">10%</option>
+        <option value="background-position-y: 50%">50%</option>
+      </select>
+
+      <span>Repeat</span>
+      <select data-square>
+        <option value="background-repeat: repeat">repeat</option>
+        <option value="background-repeat: repeat-x">repeat-x</option>
+        <option value="background-repeat: repeat-y">repeat-y</option>
+        <option value="background-repeat: no-repeat">no-repeat</option>
+        <option value="background-repeat: space">space</option>
+        <option value="background-repeat: round%">round%</option>
+      </select>
+
+      <p id="code">...</p>
+
+      <div class="buttons">
+        <button onclick="copy()">Copy CSS</button>
+        <button onclick="generateRandomBackground()">Generate!</button>
+      </div>
+
     </div>
 
-  </div>
+    <div id="square"></div>
 
-  <div id="square"></div>
-
-    </main>
+  </main>
 
   <footer></footer>
+
+  <script src="js/functions.js"></script>
+<script>
+    const selectBackground = document.querySelectorAll("select");
+    const colorInput = document.querySelector("[data-background-generator] input[type=color]");
+    const imageInput = document.querySelector("[data-background-generator] input[type=file]");
+    const image = 'url("img/avatar.webp")';
+
+    selectBackground.forEach((select) => {
+      select.addEventListener("input", () => {
+        setBackground();
+      });
+    });
+
+    function generateRandomBackground() {
+      colorInput.value = randomColor();
+      selectBackground.forEach((select) => {
+        select.value =
+          select.options[Math.floor(random(0, select.options.length))].value;
+      });
+      setBackground();
+    }
+
+    generateRandomBackground();
+
+    function setBackground() {
+      let valuesBackground = [];
+
+      selectBackground.forEach((select) => {
+        if (select.value != "") valuesBackground.push(select.value);
+      });
+
+      valuesBackground.push("background-color: " + colorInput.value);
+      valuesBackground.push("background-image: " + image);
+
+      square.setAttribute("style", valuesBackground.join("; "));
+
+      cssCode.textContent = square.getAttribute("style");
+    };
+  </script>
 
 </body>
 

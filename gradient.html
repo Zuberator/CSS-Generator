@@ -16,7 +16,6 @@
 
   <!-- JS -->
   <script defer src="https://code.iconify.design/iconify-icon/1.0.0-beta.3/iconify-icon.min.js"></script>
-  <script defer src="js/functions.js"></script>
 </head>
 
 <body>
@@ -39,31 +38,86 @@
 
   <main data-animation>
 
-  <div id="controls" data-gradient-generator>
+    <div id="controls" data-gradient-generator>
 
-    <span>ADD RADIAL AND CONIC?</span>
-    <span>Degree</span>
-    <input type="range" min="0" max="360" value="0" id="degree">
-    <span>Color 1</span>
-    <input type="color" id="color-1">
-    <span>Color 2</span>
-    <input type="color" id="color-2">
-    <input type="button" value="+" onclick="addColorInput()">
+      <span>ADD RADIAL AND CONIC?</span>
+      <span>Degree</span>
+      <input type="range" min="0" max="360" value="0" id="degree">
+      <span>Color 1</span>
+      <input type="color" id="color-1">
+      <span>Color 2</span>
+      <input type="color" id="color-2">
+      <input type="button" value="+" onclick="addColorInput()">
 
-    <p id="code">...</p>
+      <p id="code">...</p>
 
-    <div class="buttons">
-      <button onclick="copy()">Copy CSS</button>
-      <button onclick="generateRandomGradient()">Generate!</button>
+      <div class="buttons">
+        <button onclick="copy()">Copy CSS</button>
+        <button onclick="generateRandomGradient()">Generate!</button>
+      </div>
+
     </div>
 
-  </div>
+    <div id="square"></div>
 
-  <div id="square"></div>
-
-    </main>
+  </main>
 
   <footer></footer>
+
+  <script src="js/functions.js"></script>
+<script>
+    let controlsGradient = document.querySelector("[data-gradient-generator]");
+    let inputsGradient = document.querySelectorAll(
+      "[data-gradient-generator] input"
+    );
+    let colors = document.querySelectorAll(
+      "[data-gradient-generator] input[type=color]"
+    );
+    let degree = 0;
+
+    document.body.addEventListener("input", (e) => {
+      if (e.target && e.target.matches("[data-gradient-generator] input")) {
+        setGradient(document.getElementById("degree").value);
+      }
+    });
+
+    generateRandomGradient();
+
+    function generateRandomGradient() {
+      colors.forEach((colorInput) => (colorInput.value = randomColor()));
+      degree = document.getElementById("degree").value = Math.floor(random(0, 360));
+      setGradient(degree);
+    }
+
+    function setGradient(degree) {
+      let color = [];
+      colors.forEach((colorInput) => color.push(colorInput.value));
+
+      let gradient = `${degree}deg, ${color}`;
+      square.style.setProperty("background", `linear-gradient(${gradient})`);
+      cssCode.textContent = "background: " + square.style.background;
+    }
+
+    function addColorInput() {
+      let colorInputSpan = document.createElement("span");
+      colorInputSpan.textContent = `Color ${colors.length + 1}`;
+      let colorInput = document.createElement("input");
+      colorInput.type = "color";
+      colorInput.id = `color-${colors.length + 1}`;
+      controlsGradient.children[
+        controlsGradient.children.length - 4
+      ].insertAdjacentElement("afterEnd", colorInputSpan);
+      controlsGradient.children[
+        controlsGradient.children.length - 4
+      ].insertAdjacentElement("afterEnd", colorInput);
+
+      inputsGradient = document.querySelectorAll("[data-gradient-generator] input");
+      colors = document.querySelectorAll(
+        "[data-gradient-generator] input[type=color]"
+      );
+      setGradient(degree);
+    }
+  </script>
 
 </body>
 

@@ -16,7 +16,6 @@
 
   <!-- JS -->
   <script defer src="https://code.iconify.design/iconify-icon/1.0.0-beta.3/iconify-icon.min.js"></script>
-  <script defer src="js/functions.js"></script>
 </head>
 
 <body>
@@ -39,35 +38,80 @@
 
   <main data-animation>
 
-  <div id="controls" data-box-shadow>
+    <div id="controls" data-box-shadow>
 
-    <span>Horizontal</span>
-    <input data-input type="range" min="-100" max="100" id="horizontal">
-    <span>Vertical</span>
-    <input data-input type="range" min="-100" max="100" id="vertical">
-    <span>Blur</span>
-    <input data-input type="range" min="0" max="100" value="0" id="blur">
-    <span>Spread</span>
-    <input data-input type="range" min="0" max="100" value="0" id="spread">
-    <span>Color</span>
-    <input data-input type="color" id="color">
-    <span>Inset</span>
-    <input data-inset type="checkbox" id="inset">
+      <span>Horizontal</span>
+      <input data-input type="range" min="-100" max="100" id="horizontal">
+      <span>Vertical</span>
+      <input data-input type="range" min="-100" max="100" id="vertical">
+      <span>Blur</span>
+      <input data-input type="range" min="0" max="100" value="0" id="blur">
+      <span>Spread</span>
+      <input data-input type="range" min="0" max="100" value="0" id="spread">
+      <span>Color</span>
+      <input data-input type="color" id="color">
+      <span>Inset</span>
+      <input data-inset type="checkbox" id="inset">
 
-    <p id="code">...</p>
+      <p id="code">...</p>
 
-    <div class="buttons">
-      <button onclick="copy()">Copy CSS</button>
-      <button onclick="generateRandomBoxShadow()">Generate!</button>
+      <div class="buttons">
+        <button onclick="copy()">Copy CSS</button>
+        <button onclick="generateRandomBoxShadow()">Generate!</button>
+      </div>
+
     </div>
 
-  </div>
+    <div id="square"></div>
 
-  <div id="square"></div>
-
-    </main>
+  </main>
 
   <footer></footer>
+
+  <script src="js/functions.js"></script>
+<script>
+    let inputsBoxShadow = document.querySelectorAll("[data-box-shadow] input");
+
+    inputsBoxShadow.forEach((input) => {
+      input.addEventListener("input", () => {
+        setBoxShadow(
+          document.getElementById("horizontal").value,
+          document.getElementById("vertical").value,
+          document.getElementById("blur").value,
+          document.getElementById("spread").value,
+          document.getElementById("color").value
+        );
+      });
+    });
+
+    generateRandomBoxShadow();
+
+    function generateRandomBoxShadow() {
+      document.getElementById("horizontal").value = random(-100, 100);
+      document.getElementById("vertical").value = random(-100, 100);
+      document.getElementById("blur").value = random(0, 100);
+      document.getElementById("spread").value = random(0, 100);
+      document.getElementById("color").value = randomColor();
+      setBoxShadow(
+        document.getElementById("horizontal").value,
+        document.getElementById("vertical").value,
+        document.getElementById("blur").value,
+        document.getElementById("spread").value,
+        document.getElementById("color").value
+      );
+    }
+
+    function setBoxShadow(horizontal, vertical, blur, spread, color) {
+      if (document.getElementById("inset").checked == true) {
+        inset = "inset";
+      } else {
+        inset = "";
+      }
+      let boxShadow = `${color} ${horizontal}px ${vertical}px ${blur}px ${spread}px ${inset}`;
+      square.style.setProperty("box-shadow", boxShadow);
+      cssCode.textContent = "box-shadow: " + square.style.boxShadow;
+    }
+  </script>
 
 </body>
 

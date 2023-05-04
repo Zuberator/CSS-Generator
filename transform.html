@@ -16,7 +16,6 @@
 
   <!-- JS -->
   <script defer src="https://code.iconify.design/iconify-icon/1.0.0-beta.3/iconify-icon.min.js"></script>
-  <script defer src="js/functions.js"></script>
 </head>
 
 <body>
@@ -83,6 +82,84 @@
   </main>
 
   <footer></footer>
+
+  <script src="js/functions.js"></script>
+<script>
+    let inputsTransform = document.querySelectorAll("[data-transform] input");
+
+    inputsTransform.forEach((input) => {
+      input.addEventListener("input", (e) => {
+        setTransform();
+      });
+    });
+
+    generateRandomTransform();
+
+    function generateRandomTransform() {
+      inputsTransform.forEach((input) => {
+        input.value = random(+input.min, +input.max);
+      });
+      setTransform();
+    }
+
+    function setTransform() {
+      let valuesTransform = [];
+      inputsTransform.forEach((input) => {
+        if (
+          (input.id != "scaleX" && input.id != "scaleY" && input.value != "0") ||
+          ((input.id == "scaleX" || input.id == "scaleY") && input.value != "1")
+        ) {
+          valuesTransform.push(
+            input.id + "(" + input.value + input.dataset.unit + ") "
+          );
+        }
+      });
+      square.style.setProperty("transform", valuesTransform.join(" "));
+      cssCode.textContent = "transform: " + square.style.transform;
+    }
+
+// let inputsTransform = document.querySelectorAll("[data-transform] input");
+// let valuesTransform = [];
+
+// const styles = [
+//   { Name: "translateX", Value: "0", Unit: "px", Draw: `random(-100, 100)` },
+//   { Name: "translateY", Value: "0", Unit: "px", Draw: `random(-100, 100)` },
+//   { Name: "rotateX", Value: "0", Unit: "deg", Draw: `random(-100, 100)` },
+//   { Name: "rotateY", Value: "0", Unit: "deg", Draw: `random(-100, 100)` },
+//   { Name: "rotateZ", Value: "0", Unit: "deg", Draw: `random(-100, 100)` },
+//   { Name: "skewX", Value: "0", Unit: "deg", Draw: `random(-5, 5)` },
+//   { Name: "skewY", Value: "0", Unit: "deg", Draw: `random(-5, 5)` },
+//   { Name: "scaleX", Value: "0", Unit: "", Draw: `random(5, 15) / 10` },
+//   { Name: "scaleY", Value: "0", Unit: "", Draw: `random(5, 15) / 10` },
+// ];
+
+// inputsTransform.forEach((input) => {
+//   input.addEventListener("input", (e) => {
+//     styles.find((x) => x.Name == e.target.id).Value = e.target.value;
+//     styles.forEach((style) => {
+//       if (style.Value != "0") {
+//         valuesTransform.push(`${style.Name}(${style.Value + style.Unit})`);
+//       }
+//     });
+//     setTransform();
+//   });
+// });
+
+// function generateRandomTransform() {
+//   styles.forEach((style, index) => {
+//     style.Value = eval(style.Draw);
+//     inputsTransform[index].value = style.Value;
+//     valuesTransform.push(`${style.Name}(${style.Value + style.Unit})`);
+//   });
+//   setTransform();
+// }
+
+// function setTransform() {
+//   square.style.setProperty("transform", valuesTransform.join(" "));
+//   cssCode.textContent = "transform: " + square.style.transform;
+//   valuesTransform = [];
+// }
+  </script>
 
 </body>
 

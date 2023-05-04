@@ -16,7 +16,6 @@
 
   <!-- JS -->
   <script defer src="https://code.iconify.design/iconify-icon/1.0.0-beta.3/iconify-icon.min.js"></script>
-  <script defer src="js/functions.js"></script>
 </head>
 
 <body>
@@ -41,14 +40,11 @@
 
     <div id="controls" data-button-generator>
 
-      <span>Horizontal</span>
-      <input type="range" min="-100" max="100" id="horizontal">
-      <span>Vertical</span>
-      <input type="range" min="-100" max="100" id="vertical">
-      <span>Blur</span>
-      <input type="range" min="0" max="20" value="0" id="blur">
       <span>Color</span>
       <input type="color" id="color">
+
+      <span>Border Radius</span>
+      <input type="range" min="0" max="30" value="0" id="border-radius" data-unit="px">
 
       <p id="code">...</p>
 
@@ -59,11 +55,59 @@
 
     </div>
 
-    <div id="square"></div>
+    <div id="button">BUTTON</div>
 
   </main>
 
   <footer></footer>
+
+  <script src="js/functions.js"></script>
+  <script>
+    const selectButton = document.querySelectorAll("select");
+    const colorInput = document.querySelector("[data-button-generator] input[type=color]");
+    const inputsButton = document.querySelectorAll("[data-button-generator] input[type=range]");
+
+    selectButton.forEach((select) => {
+      select.addEventListener("input", () => {
+        setButton();
+      });
+    });
+
+    generateRandomButton();
+
+    function generateRandomButton() {
+      colorInput.value = randomColor();
+
+      inputsButton.forEach((input) => {
+        input.value = random(+input.min, +input.max);
+      });
+
+      selectButton.forEach((select) => {
+        select.value =
+          select.options[Math.floor(random(0, select.options.length))].value;
+      });
+
+      setButton();
+    }
+
+    function setButton() {
+      let valuesButton = [];
+
+      selectButton.forEach((select) => {
+        if (select.value != "") valuesButton.push(select.value);
+      });
+
+      inputsButton.forEach((input) => {
+        valuesButton.push(input.id + ": " + input.value + input.dataset.unit);
+      });
+
+      valuesButton.push("background-color: " + colorInput.value);
+
+      button.setAttribute("style", valuesButton.join("; "));
+
+      cssCode.textContent = button.getAttribute("style");
+    };
+  </script>
 
 </body>
 

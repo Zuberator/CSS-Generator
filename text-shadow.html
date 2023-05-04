@@ -16,7 +16,6 @@
 
   <!-- JS -->
   <script defer src="https://code.iconify.design/iconify-icon/1.0.0-beta.3/iconify-icon.min.js"></script>
-  <script defer src="js/functions.js"></script>
 </head>
 
 <body>
@@ -64,6 +63,32 @@
   </main>
 
   <footer></footer>
+
+  <script src="js/functions.js"></script>
+<script>
+    let inputsTextShadow = document.querySelectorAll("[data-text-shadow] input");
+
+    inputsTextShadow.forEach((input) => {
+      input.addEventListener("input", () => setTextShadow());
+    });
+
+    generateRandomTextShadow();
+
+    function generateRandomTextShadow() {
+      inputsTextShadow[0].value = random(-100, 100);
+      inputsTextShadow[1].value = random(-100, 100);
+      inputsTextShadow[2].value = random(0, 20);
+      inputsTextShadow[3].value = randomColor();
+      setTextShadow();
+    }
+
+    function setTextShadow() {
+      shadow = [];
+      inputsTextShadow.forEach((input) => shadow.push(input.value));
+      square.style.setProperty("text-shadow", shadow.join("px "));
+      cssCode.textContent = "text-shadow: " + square.style.textShadow;
+    }
+  </script>
 
 </body>
 

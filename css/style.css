@@ -230,6 +230,14 @@ p {
 
 /* BACKGROUND */
 
+/* BUTTON */
+
+#button {
+  padding: 1rem 3rem;
+  cursor: pointer;
+  color: #fff;
+}
+
 /* FOOTER */
 
 footer {

@@ -16,7 +16,6 @@
 
   <!-- JS -->
   <script defer src="https://code.iconify.design/iconify-icon/1.0.0-beta.3/iconify-icon.min.js"></script>
-  <script defer src="js/functions.js"></script>
 </head>
 
 <body>
@@ -195,6 +194,47 @@
   </main>
 
   <footer></footer>
+
+  <script src="js/functions.js"></script>
+<script>
+    let selectGrid = document.querySelectorAll("select");
+    let selectGridParent = document.querySelectorAll("[data-square]");
+    let selectGridChildren = document.querySelectorAll("[data-small-square]");
+    let smallSquaresBox = document.querySelector("#square");
+
+    selectGrid.forEach((select) => {
+      select.addEventListener("input", () => {
+        setGrid();
+      });
+    });
+
+    generateRandomGrid();
+
+    function generateRandomGrid() {
+      selectGrid.forEach((select) => {
+        select.value =
+          select.options[Math.floor(random(0, select.options.length))].value;
+      });
+      setGrid();
+    }
+
+    function setGrid() {
+      let valuesGridBig = [];
+      let valuesGridSmall = [];
+
+      selectGridParent.forEach((select) => {
+        if (select.value != "") valuesGridBig.push(select.value);
+      });
+
+      selectGridChildren.forEach((select) => {
+        if (select.value != "") valuesGridSmall.push(select.value);
+      });
+
+      square.setAttribute("style", valuesGridBig.join("; "));
+      smallSquaresBox.children[0].setAttribute("style", valuesGridSmall.join("; "));
+      cssCode.textContent = square.getAttribute("style");
+    }
+  </script>
 
 </body>
 

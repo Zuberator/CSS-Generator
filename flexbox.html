@@ -16,7 +16,6 @@
 
   <!-- JS -->
   <script defer src="https://code.iconify.design/iconify-icon/1.0.0-beta.3/iconify-icon.min.js"></script>
-  <script defer src="js/functions.js"></script>
 </head>
 
 <body>
@@ -149,6 +148,56 @@
   </main>
 
   <footer></footer>
+
+  <script src="js/functions.js"></script>
+<script>
+    let selectFlexbox = document.querySelectorAll("select");
+    let selectFlexboxParent = document.querySelectorAll("[data-square]");
+    let selectFlexboxChildren = document.querySelectorAll("[data-small-square]");
+    let smallSquaresBox = document.querySelector("#square");
+
+    selectFlexbox.forEach((select) => {
+      select.addEventListener("input", () => {
+        setFlexbox();
+      });
+    });
+
+    function addSquare() {
+      let smallSquare = document.createElement("div");
+      smallSquare.id = "small-square";
+      smallSquaresBox.appendChild(smallSquare);
+    }
+
+    generateRandomFlexbox();
+
+    function generateRandomFlexbox() {
+      selectFlexbox.forEach((select) => {
+        select.value =
+          select.options[Math.floor(random(0, select.options.length))].value;
+      });
+      setFlexbox();
+    }
+
+    function setFlexbox() {
+      let valuesFlexboxParent = [];
+      let valuesFlexboxChildren = [];
+
+      selectFlexboxParent.forEach((select) => {
+        if (select.value != "") valuesFlexboxParent.push(select.value);
+      });
+
+      selectFlexboxChildren.forEach((select) => {
+        if (select.value != "") valuesFlexboxChildren.push(select.value);
+      });
+
+      square.setAttribute("style", valuesFlexboxParent.join("; "));
+      smallSquaresBox.children[0].setAttribute(
+        "style",
+        valuesFlexboxChildren.join("; ")
+      );
+      cssCode.textContent = square.getAttribute("style");
+    }
+  </script>
 
 </body>
 

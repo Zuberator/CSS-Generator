@@ -16,7 +16,6 @@
 
   <!-- JS -->
   <script defer src="https://code.iconify.design/iconify-icon/1.0.0-beta.3/iconify-icon.min.js"></script>
-  <script defer src="js/functions.js"></script>
 </head>
 
 <body>
@@ -60,6 +59,38 @@
   </main>
 
   <footer></footer>
+
+  <script src="js/functions.js"></script>
+<script>
+    let inputsColors = document.querySelectorAll("[data-colors-generator] input");
+
+    inputsColors.forEach((input) => {
+      input.addEventListener("input", () => {
+        let hue = document.getElementById("hue").value;
+        let saturation = document.getElementById("sat").value;
+        let lightness = document.getElementById("lig").value;
+        setColor(hue, saturation, lightness);
+      });
+    });
+
+    generateRandomColor();
+
+    function generateRandomColor() {
+      let hue = Math.floor(random(0, 360));
+      let saturation = Math.floor(random(0, 100));
+      let lightness = Math.floor(random(0, 100));
+      setColor(hue, saturation, lightness);
+    }
+
+    function setColor(hue, saturation, lightness) {
+      document.getElementById("hue").value = hue;
+      document.getElementById("sat").value = saturation;
+      document.getElementById("lig").value = lightness;
+      let color = `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+      document.body.style.setProperty("background", color);
+      code.textContent = "background: " + color;
+    }
+  </script>
 
 </body>
 
